@@ -1,10 +1,13 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 public class Controller extends JPanel {
-    Model model;
+    main.java.Model model;
     KeyListener listener = new KeyListener() {
         @Override
         public void keyTyped(KeyEvent keyEvent) {
@@ -22,7 +25,7 @@ public class Controller extends JPanel {
         }
     };
 
-    public Controller(Model model) {
+    public Controller(main.java.Model model) {
         this.model = model;
     }
 
@@ -68,7 +71,7 @@ public class Controller extends JPanel {
         model.setAmountWrong();
     }
 
-    public Model getModel() {
+    public main.java.Model getModel() {
         return model;
     }
 
