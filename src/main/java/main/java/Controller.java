@@ -7,30 +7,14 @@ import java.awt.event.KeyListener;
 
 
 public class Controller extends JPanel {
-    main.java.Model model;
-    KeyListener listener = new KeyListener() {
-        @Override
-        public void keyTyped(KeyEvent keyEvent) {
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-
-        }
-    };
+    Model model;
 
     public Controller(main.java.Model model) {
         this.model = model;
     }
+    int amountWrong = 0;
 
     public void paintComponent(Graphics g) {
-        int amountWrong = getAmountWrong();
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.BLACK);
         g2D.setStroke(new BasicStroke(1));
@@ -46,29 +30,27 @@ public class Controller extends JPanel {
             //Drawing the Head
             g2D.drawOval(90, 100, 20, 20); // head
         }
-        if (amountWrong >= 3 || amountWrong == 2)
+        if (amountWrong >= 2)
             //Drawing the body
             g2D.drawLine(100, 119, 100, 170);
 
-        if (amountWrong >= 4 || amountWrong == 3) {
+        if (amountWrong >= 3) {
             g2D.drawLine(60, 110, 100, 150);
         }
-        if (amountWrong >= 5 || amountWrong == 4) {
+        if (amountWrong >= 4) {
             g2D.drawLine(140, 110, 100, 150);
         }
-        if (amountWrong >= 6 || amountWrong == 5) {
-            //Drawing legs
+        if (amountWrong >= 5) {
             g2D.drawLine(100, 170, 70, 210);
+        }
+       if(amountWrong == 6){
             g2D.drawLine(100, 170, 130, 210);
         }
+
     }
 
-    public int getAmountWrong() {
-        return model.getAmountWrong();
-    }
-
-    public void setAmountWrong() {
-        model.setAmountWrong();
+    public void getAmountWrong(){
+        amountWrong = model.getAmountWrong();
     }
 
     public main.java.Model getModel() {
