@@ -39,17 +39,6 @@ public class Model {
         return amountWrong;
     }
 
-    public void setAmountWrong() {
-        amountWrong++;
-    }
-
-    public void setToShow() {
-        for (int i = 0; i < answer.length(); i++) {
-            charactersInAnswer.add(answer.charAt(i));
-            toShow += "_";
-        }
-    }
-
     public void upDateToShow(char c){
         String replacement = "";
         for(int i = 0; i < answer.length(); i++){
@@ -76,6 +65,17 @@ public class Model {
 
     public String getToShow() {
         return toShow;
+    }
+    
+     public void setToShow() {
+        for (int i = 0; i < answer.length(); i++) {
+            charactersInAnswer.add(answer.charAt(i));
+            toShow += "_";
+        }
+    }
+    
+     public void setAmountWrong() {
+        amountWrong++;
     }
 
     public boolean checkIfExists(char c){
