@@ -12,14 +12,13 @@ import java.util.HashSet;
 
 public class Model {
     HashSet<Character> charactersInAnswer = new HashSet();
-    String answer = "emmanouil";
+    String answer = "";
     String toShow = "";
     char guess;
     private int amountWrong = 0;
 
     public Model() throws UnirestException {
-//        getWordToGuess();
-        setToShow();
+        getWordToGuess();
     }
 
     public void getWordToGuess() throws UnirestException {

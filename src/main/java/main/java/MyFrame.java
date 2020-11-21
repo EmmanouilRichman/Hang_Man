@@ -1,5 +1,7 @@
 package main.java;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -65,10 +67,14 @@ public class MyFrame extends JFrame {
             }
 
             if(code == KeyEvent.VK_R){
-                controller.getModel().setToShow();
+                try {
+                    controller.getModel().getWordToGuess();
+                } catch (UnirestException e) {
+                    e.printStackTrace();
+                }
                 controller.setAmountWrong();
                 answerLabel.setText(controller.getModel().getToShow());
-                userInput.setText("");
+                userInput.setText(" ");
                 repaint();
             }
 
@@ -77,6 +83,7 @@ public class MyFrame extends JFrame {
             }
             else if(controller.getAmount() == 6){
                 answerLabel.setText("You Lose!");
+                userInput.setText(controller.getModel().getAnswer());
             }
         }
 
