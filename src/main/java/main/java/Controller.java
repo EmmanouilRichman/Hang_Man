@@ -2,9 +2,6 @@ package main.java;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 
 public class Controller extends JPanel {
     Model model;
@@ -49,11 +46,15 @@ public class Controller extends JPanel {
 
     }
 
+    public void setAmountWrong() {amountWrong = 0;};
+
     public void getAmountWrong(){
-        amountWrong = model.getAmountWrong();
+        amountWrong = getModel().getAmountWrong();
     }
 
-    public main.java.Model getModel() {
+    public int getAmount(){return amountWrong;};
+
+    public Model getModel() {
         return model;
     }
 

@@ -39,11 +39,15 @@ public class Model {
         return amountWrong;
     }
 
-    public void setAmountWrong() {
+    public void addAmountWrong() {
         amountWrong++;
     }
 
+    public void setAmountWrong() {amountWrong = 0;};
+
     public void setToShow() {
+        toShow = "";
+        setAmountWrong();
         for (int i = 0; i < answer.length(); i++) {
             charactersInAnswer.add(answer.charAt(i));
             toShow += "_";
@@ -66,6 +70,10 @@ public class Model {
         toShow = replacement;
     }
 
+    public String getToShow() {
+        return toShow;
+    }
+
     public char getGuess() {
         return this.guess;
     }
@@ -74,8 +82,8 @@ public class Model {
         this.guess = c;
     }
 
-    public String getToShow() {
-        return toShow;
+    public String getAnswer(){
+        return answer;
     }
 
     public boolean checkIfExists(char c){
@@ -84,7 +92,7 @@ public class Model {
             return true;
         }
         else{
-            amountWrong++;
+            addAmountWrong();
             return false;
         }
     }

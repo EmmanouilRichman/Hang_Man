@@ -1,7 +1,5 @@
 package main.java;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -21,13 +19,13 @@ public class MyFrame extends JFrame {
     }
 
     public void init() {
-        this.setSize(420, 420);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Hangman");
-        userInput.setEditable(false);
+        setSize(420, 420);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setTitle("Hangman");
 
+        userInput.setEditable(false);
         controller.setLayout(new BorderLayout());
         controller.add(answerLabel, BorderLayout.NORTH);
         controller.add(userInput, BorderLayout.SOUTH);
@@ -64,6 +62,21 @@ public class MyFrame extends JFrame {
             }
             else{
                 toCheck = guess.charAt(0);
+            }
+
+            if(code == KeyEvent.VK_R){
+                controller.getModel().setToShow();
+                controller.setAmountWrong();
+                answerLabel.setText(controller.getModel().getToShow());
+                userInput.setText("");
+                repaint();
+            }
+
+            if(controller.getModel().getToShow().equals(controller.getModel().getAnswer())){
+                answerLabel.setText("You win!");
+            }
+            else if(controller.getAmount() == 6){
+                answerLabel.setText("You Lose!");
             }
         }
 
