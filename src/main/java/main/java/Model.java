@@ -22,8 +22,9 @@ public class Model {
     }
 
     public void getWordToGuess() throws UnirestException {
+        charactersInAnswer.clear();
         HttpResponse<JsonNode> response = Unirest.get("https://random-words2.p.rapidapi.com/words?limit=1&lang=en")
-                .header("x-rapidapi-key", "")
+                .header("x-rapidapi-key", "ENTER KEY HERE")
                 .header("x-rapidapi-host", "random-words2.p.rapidapi.com")
                 .asJson();
         JsonParser jp = new JsonParser();
@@ -42,7 +43,7 @@ public class Model {
         amountWrong++;
     }
 
-    public void setAmountWrong() {amountWrong = 0;};
+    public void setAmountWrong() {amountWrong = 0;}
 
     public void setToShow() {
         toShow = "";
@@ -85,6 +86,10 @@ public class Model {
         return answer;
     }
 
+    public void setAnswer(){
+
+    }
+
     public boolean checkIfExists(char c){
         setGuess(c);
         if(charactersInAnswer.contains(getGuess())){
@@ -95,5 +100,7 @@ public class Model {
             return false;
         }
     }
+
+
 
 }

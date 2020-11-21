@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class MyFrame extends JFrame {
-    Controller controller;
+    private Controller controller;
     JTextField userInput;
     JLabel answerLabel;
     char toCheck;
@@ -26,14 +26,15 @@ public class MyFrame extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Hangman");
-
         userInput.setEditable(false);
-        controller.setLayout(new BorderLayout());
-        controller.add(answerLabel, BorderLayout.NORTH);
-        controller.add(userInput, BorderLayout.SOUTH);
-        answerLabel.setText(controller.getModel().getToShow());
+
+        getController().setLayout(new BorderLayout());
+        getController().add(answerLabel, BorderLayout.NORTH);
+        getController().add(userInput, BorderLayout.SOUTH);
+        answerLabel.setText(getController().getModel().getToShow());
         addKeyListener(listener);
-        add(controller);
+        add(getController());
+
         setVisible(true);
         setFocusable(true);
     }
@@ -47,43 +48,42 @@ public class MyFrame extends JFrame {
         @Override
         public void keyPressed(KeyEvent keyEvent) {
             int code = keyEvent.getKeyCode();
-            String guess = keyEvent.getKeyText(code);
+            String guess = KeyEvent.getKeyText(code);
             guess = guess.toLowerCase();
             userInput.setText(guess);
             if(code == KeyEvent.VK_ENTER){
                 System.out.println(toCheck);
                 userInput.setText("");
-                if(controller.model.checkIfExists(toCheck)){
-                    controller.model.upDateToShow(toCheck);
+                if(getController().getModel().checkIfExists(toCheck)){
+                    getController().getModel().upDateToShow(toCheck);
                     answerLabel.setText(controller.getModel().getToShow());
                 }
                 else{
-                    controller.getAmountWrong();
-                    controller.repaint();
+                    getController().getAmountWrong();
+                    getController().repaint();
                 }
             }
             else{
                 toCheck = guess.charAt(0);
             }
 
-            if(code == KeyEvent.VK_R){
+            if(code == KeyEvent.VK_1){
+                getController().setAmountWrong();
                 try {
-                    controller.getModel().getWordToGuess();
+                    getController().getModel().getWordToGuess();
                 } catch (UnirestException e) {
                     e.printStackTrace();
                 }
-                controller.setAmountWrong();
-                answerLabel.setText(controller.getModel().getToShow());
-                userInput.setText(" ");
+                answerLabel.setText(getController().getModel().getToShow());
                 repaint();
             }
 
-            if(controller.getModel().getToShow().equals(controller.getModel().getAnswer())){
+            if(getController().getModel().getToShow().equals(getController().getModel().getAnswer())){
                 answerLabel.setText("You win!");
             }
-            else if(controller.getAmount() == 6){
+            else if(getController().getAmount() == 6){
                 answerLabel.setText("You Lose!");
-                userInput.setText(controller.getModel().getAnswer());
+                userInput.setText(getController().getModel().getAnswer());
             }
         }
 
@@ -92,5 +92,9 @@ public class MyFrame extends JFrame {
 
         }
     };
+
+    public Controller getController(){
+        return controller;
+    }
 
 }

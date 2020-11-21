@@ -46,13 +46,13 @@ public class Controller extends JPanel {
 
     }
 
-    public void setAmountWrong() {amountWrong = 0;};
+    public void setAmountWrong() {amountWrong = 0;}
 
     public void getAmountWrong(){
         amountWrong = getModel().getAmountWrong();
     }
 
-    public int getAmount(){return amountWrong;};
+    public int getAmount(){return amountWrong;}
 
     public Model getModel() {
         return model;
